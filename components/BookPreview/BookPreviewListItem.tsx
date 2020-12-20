@@ -2,23 +2,26 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { max } from '../../constants/Layout';
 import { useThemeColor, View } from '../Themed';
+import BookPreviewImage from './BookPreviewImage';
 import BookPreviewSize from './configuration';
 
-type BookPreviewListItemProps = { item: any };
-export default function BookPreviewListItem(props: BookPreviewListItemProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { item } = props;
-
+export default function BookPreviewListItem({ source }: any) {
   const borderColor = useThemeColor({}, 'text');
-  return <View style={[{ borderColor }, styles.layout]} />;
+  return (
+    <View style={[{ borderColor }, styles.layout]}>
+      <BookPreviewImage source={source} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   layout: {
     flex: 1,
     width: max(BookPreviewSize.width),
-    borderRadius: 5,
-    borderWidth: 1,
     marginHorizontal: 5,
+  },
+  img: {
+    width: max(BookPreviewSize.width),
+    height: max(BookPreviewSize.height),
   },
 });
