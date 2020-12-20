@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   },
   h2: {
     fontSize: max(24),
+    marginBottom: 10,
   },
   h3: {
     fontSize: max(18),
