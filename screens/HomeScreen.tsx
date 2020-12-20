@@ -1,17 +1,46 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { Quote } from '../components/home';
 
-import { Text, View } from '../components/Themed';
+import { View } from '../components/Themed';
+import { Heading, Separator, Center } from '../components/ui';
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Kezdőoldal</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <ScrollView style={styles.scroll}>
+        <Heading variant="h2">Kezdőoldal</Heading>
+        <Center>
+          <Separator />
+        </Center>
+
+        <Quote />
+
+        <Center>
+          <Separator />
+        </Center>
+
+        <Heading variant="h2">Ajánló</Heading>
+
+        <Center>
+          <Separator />
+        </Center>
+
+        <Heading variant="h2">Random értékelés</Heading>
+
+        <Center>
+          <Separator />
+        </Center>
+
+        <Heading variant="h2">Friss megjelenések</Heading>
+
+        <Center>
+          <Separator />
+        </Center>
+
+        <Heading variant="h2">Hamarosan érkeznek</Heading>
+      </ScrollView>
     </View>
   );
 }
@@ -19,16 +48,9 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  scroll: {
+    flex: 1,
+    padding: 10,
   },
 });
