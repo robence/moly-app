@@ -11,24 +11,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
+   steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: 12.x
       - uses: expo/expo-github-action@v5
         with:
           expo-version: 3.x
           expo-token: ${{ secrets.EXPO_TOKEN }}
-
-      - name: Install dependencies
-        run: yarn install
-
-      # - name: Set API_DOMAIN
-      #   run: echo "REACT_NATIVE_API_DOMAIN=yellow" >> $GITHUB_ENV
-      #
-      - name: Publish to branch release channel
+      - run: yarn install
         run: expo publish --release-channel=pr-${{ github.event.number }}
+      - uses: unsplash/comment-on-pr@master
         env:
-          REACT_NATIVE_API_DOMAIN: ${{ secrets.DEV_API_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: App is ready for review, you can [see it here](https://expo.io/@robence/projects/moly-app?release-channel=pr-${{ github.event.number }}).
