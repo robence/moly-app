@@ -10,3 +10,12 @@ export default {
   },
   isSmallDevice: width < 375,
 };
+
+// Note: experimental feature
+const maxWidth = 420;
+const maxHeight = 900;
+
+export function max(max: number) {
+  const percentage = (width / maxWidth + height / maxHeight) / 2;
+  return max * percentage;
+}

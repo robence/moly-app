@@ -1,10 +1,21 @@
 import { Ionicons } from '@expo/vector-icons';
+import * as React from 'react';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import * as React from 'react';
+import { useFonts, Lato_400Regular } from '@expo-google-fonts/lato';
+import {
+  Merriweather_700Bold,
+  Merriweather_400Regular,
+} from '@expo-google-fonts/merriweather';
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
+
+  let [fontsLoaded] = useFonts({
+    Lato_400Regular,
+    Merriweather_700Bold,
+    Merriweather_400Regular,
+  });
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
@@ -29,5 +40,5 @@ export default function useCachedResources() {
     loadResourcesAndDataAsync();
   }, []);
 
-  return isLoadingComplete;
+  return isLoadingComplete && fontsLoaded;
 }
